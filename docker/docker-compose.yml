@@ -1,0 +1,33 @@
+version: '3'
+services: 
+
+  uwsgi:
+    image: kv01d/collie-api
+    build:
+      context: .
+      dockerfile: Dockerfile-uwsgi
+    ports:
+      - 5000:5000
+      - 3306:3306
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: colliecolliecollie
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: api
+  nginx:
+    links:
+      - "uwsgi"
+    image: kv01d/collie-nginx
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - 80:80
+      - 443:443
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: colliecolliecollie
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: nginxflutt
