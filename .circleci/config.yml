@@ -8,9 +8,9 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
+      #- python/load-cache
+      #- python/install-deps
+      #- python/save-cache
       - add_ssh_keys:
           fingerprints:
             - "51:55:43:29:7b:16:95:85:dd:2f:45:de:1a:fb:a5:b4"
