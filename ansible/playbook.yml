@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: true
+  #vars_files:
+    #- vars/default.yml
+
+  tasks:
+    #- name: Install Nginx
+      #apt: name=nginx update_cache=yes state=latest force_apt_get=yes
+    - name: Install pip
+      apt: name=python3-pip update_cache=yes state=latest force_apt_get=yes
+
+# Install Packages
+    - name: Update apt
+      apt: update_cache=yes
+
+    - name: Install required system packages
+      apt: name=python3-pip state=latest
+
+# UFW Setup
+    - name: UFW - Allow port 80 connections
+      ufw:
+        rule: allow
+        port: "80"
+        proto: tcp
+# install pip requirements
+    - name: install requirements (flask)
+      pip:
+        name: Flask

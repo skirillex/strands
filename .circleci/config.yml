@@ -1,0 +1,60 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
+      - add_ssh_keys:
+          fingerprints:
+            - "51:55:43:29:7b:16:95:85:dd:2f:45:de:1a:fb:a5:b4"
+      - run:
+          command: cp ~/.ssh/id_rsa_515543297b169585dd2f45de1afba5b4 ~/.ssh/kirill-IAM-keypair.pem
+      - run:
+          command: pip install -r strands_app_tester/requirements.txt
+          name: Dependencies
+      - run:
+          name: Install terraform
+          command: sudo bash terraform/install_terraform.sh
+
+      - run:
+          name: Install ansible
+          command: sudo apt -y install ansible
+      - run:
+          command: python -m unittest discover strands_app_tests/tests
+          name: Unit Tests
+      - run:
+          name: Terraform Commands
+          command: |
+              cd terraform/
+              terraform init
+              terraform apply -auto-approve
+      - run:
+          name: Ansible test hosts file
+          command: |
+              sleep 90
+              ansible-inventory --list -y -i terraform/ip_address
+      - run:
+          name: Ansible set up server
+          command: |
+              export ANSIBLE_HOST_KEY_CHECKING=False
+              ansible-playbook -u ubuntu --private-key=~/.ssh/kirill-IAM-keypair.pem -i terraform/ip_address ansible/playbook.yml
+      - run:
+          name: Ansible deployment playbook
+          command: |
+              export ANSIBLE_HOST_KEY_CHECKING=False
+              ansible-playbook -u ubuntu --private-key=~/.ssh/kirill-IAM-keypair.pem -i terraform/ip_address ansible/deploy.yml
+      - store_test_results:
+          path: test-results
+  
+
+workflows:
+  main:
+    jobs:
+      - build-test-deploy

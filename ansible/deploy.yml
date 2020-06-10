@@ -1,0 +1,22 @@
+---
+
+- name: Deploy app
+  connection: ssh
+  become: true
+  gather_facts: false
+  hosts: all
+  vars:
+    repo_folder: /var/www/github-deployment/repos/
+    live_folder: /var/www/test_page/build
+    repo_name: skirillex/ci_tester
+  
+  tasks:
+    - git:
+        repo: https://github.com/{{ repo_name }}.git
+        dest: "{{ repo_folder }}"
+        update: yes
+
+    - name: Build project
+      shell: nohup python3 mainPage.py > log.txt  2>&1 &
+      args:
+        chdir: "{{ repo_folder }}"
