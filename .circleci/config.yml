@@ -27,7 +27,9 @@ jobs:
           name: Install ansible
           command: sudo apt -y install ansible
       - run:
-          command: python -m unittest discover strands_app_tester/tests
+          command: |
+              cd strands_app_tester
+              python -m unittest discover tests/
           name: Unit Tests
       - run:
           name: Terraform Commands
