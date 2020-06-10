@@ -8,7 +8,7 @@
   vars:
     repo_folder: /var/www/github-deployment/repos/
     live_folder: /var/www/test_page/build
-    repo_name: skirillex/ci_tester
+    repo_name: skirillex/strands
   
   tasks:
     - git:
@@ -17,6 +17,6 @@
         update: yes
 
     - name: Build project
-      shell: nohup python3 mainPage.py > log.txt  2>&1 &
+      shell: nohup python3 strands_app_tester/mainPage.py > log.txt  2>&1 &
       args:
         chdir: "{{ repo_folder }}"

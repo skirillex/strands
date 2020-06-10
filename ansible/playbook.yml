@@ -7,15 +7,19 @@
   tasks:
     #- name: Install Nginx
       #apt: name=nginx update_cache=yes state=latest force_apt_get=yes
-    - name: Install pip
-      apt: name=python3-pip update_cache=yes state=latest force_apt_get=yes
+    #- name: Install pip
+      #apt: name=python3-pip update_cache=yes state=latest force_apt_get=yes
 
 # Install Packages
     - name: Update apt
-      apt: update_cache=yes
+      apt: update_cache=yes force_apt_get=yes
 
-    - name: Install required system packages
-      apt: name=python3-pip state=latest
+    - name: Install (PIP) required system packages
+      apt: name=python3-pip state=latest force_apt_get=yes
+      retries: 3
+      delay: 3
+      register: result
+      until: result.rc == 0
 
 # UFW Setup
     - name: UFW - Allow port 80 connections
