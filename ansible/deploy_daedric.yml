@@ -27,7 +27,7 @@
         chdir: "{{ repo_folder }}"
     
     - name: obtain testnet ICX
-      shell: python ./get_testnet_icx.py
+      shell: python3 ./get_testnet_icx.py
       args:
         chdir: "{{ repo_folder }}"
 
@@ -37,7 +37,7 @@
         chdir: "{{ repo_folder }}"
 
     - name: insert password into testnet tbears_cli_config.json
-      shell: python ./insert_testnet_password.py && ./scripts/score/deploy_score.sh -n yeouido -t ICXUSD
+      shell: python3 ./insert_testnet_password.py && ./scripts/score/deploy_score.sh -n yeouido -t ICXUSD
       args:
         chdir: "{{ repo_folder }}"
 
