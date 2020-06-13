@@ -20,6 +20,13 @@
       retries: 3
       delay: 3
       until: apt_res is success
+  
+    - name: Install jq
+      apt: name=jq state=latest force_apt_get=yes
+      register: apt_res
+      retries: 3
+      delay: 3
+      until: apt_res is success
 
 # UFW Setup
     - name: UFW - Allow port 80 connections
@@ -28,6 +35,14 @@
         port: "80"
         proto: tcp
 # install pip requirements
-    - name: install requirements (flask)
+    - name: install (flask)
       pip:
         name: Flask
+
+    - name: install (flask)
+      pip:
+        name: requests
+        
+    - name: install (flask)
+      pip:
+        name: tbears

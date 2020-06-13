@@ -1,0 +1,48 @@
+---
+
+- name: Deploy Daedric Price Oracle
+  connection: ssh
+  become: true
+  gather_facts: false
+  hosts: all
+  vars:
+    repo_folder: /var/daedric
+    live_folder: /var/www/test_page/build
+    repo_name: skirillex/Daedric
+
+  tasks:
+    - git:
+        repo: https://github.com/{{ repo_name }}.git
+        dest: "{{ repo_folder }}"
+        update: yes
+
+    - name: Start tbears
+      shell: ./start_tbears.sh
+      args:
+        chdir: "{{ repo_folder }}"
+    
+    - name: Install operator wallets
+      shell: ./install.sh
+      args:
+        chdir: "{{ repo_folder }}"
+    
+    - name: obtain testnet ICX
+      shell: python ./get_testnet_icx.py
+      args:
+        chdir: "{{ repo_folder }}"
+
+    - name: sleep for 10 seconds
+      shell: sleep 10
+      args:
+        chdir: "{{ repo_folder }}"
+
+    - name: insert password into testnet tbears_cli_config.json
+      shell: python ./insert_testnet_password.py && ./scripts/score/deploy_score.sh -n yeouido -t ICXUSD
+      args:
+        chdir: "{{ repo_folder }}"
+
+    - name: quick score post test
+      shell: ./scripts/bots/equalizer/icxusd/post.sh -n yeouido
+      args:
+        chdir: "{{ repo_folder }}"
+

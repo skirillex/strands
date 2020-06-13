@@ -6,7 +6,7 @@
   gather_facts: false
   hosts: all
   vars:
-    repo_folder: /var/www/github-deployment/repos/
+    repo_folder: /var/strands
     live_folder: /var/www/test_page/build
     repo_name: skirillex/strands
   
