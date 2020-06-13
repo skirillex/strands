@@ -39,10 +39,14 @@
       pip:
         name: Flask
 
-    - name: install (flask)
+    - name: install (requests)
       pip:
         name: requests
+    
+    - name: install (pkg-config)
+      pip:
+        name: pkgconfig
         
-    - name: install (flask)
+    - name: install (tbears)
       pip:
         name: tbears
