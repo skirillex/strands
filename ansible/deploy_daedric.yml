@@ -16,6 +16,9 @@
         dest: "{{ repo_folder }}"
         update: yes
 
+    - name: change python
+      shell: update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+
     - name: Start tbears
       shell: ./start_tbears.sh
       args:
