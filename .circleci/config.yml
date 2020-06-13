@@ -52,6 +52,12 @@ jobs:
           command: |
               export ANSIBLE_HOST_KEY_CHECKING=False
               ansible-playbook -u ubuntu --private-key=~/.ssh/kirill-IAM-keypair.pem -i terraform/ip_address ansible/deploy.yml
+    
+      - run:
+          name: Ansible deployment playbook
+          command: |
+              export ANSIBLE_HOST_KEY_CHECKING=False
+              ansible-playbook -u ubuntu --private-key=~/.ssh/kirill-IAM-keypair.pem -i terraform/ip_address ansible/deploy_daedric.yml
       - store_test_results:
           path: test-results
   
