@@ -1,0 +1,4 @@
+SHELL=/bin/bash
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+
+0 * * * * root cd /Daedric/ && ./scripts/bots/equalizer/icxusd/post.sh -n yeouido >> /cron_bot_logs 2>&1

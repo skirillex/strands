@@ -1,5 +1,8 @@
 FROM iconloop/tbears:1.6.4
 
+#ARG mainnet=false
+#ARG keystore_file
+#ARG keystore_password
 
 #Build and configure Daedric
 RUN git clone https://github.com/skirillex/Daedric.git /Daedric
