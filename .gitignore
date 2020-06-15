@@ -6,3 +6,6 @@
 *.tfplan
 .terragrunt-cache/
 .terraform/
+ip_address
+test_open_file.py
+integration_tests/__pycache__
