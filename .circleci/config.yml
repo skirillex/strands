@@ -70,7 +70,7 @@ jobs:
               pytest --junitxml=../test-results/junit-API_TESTS.xml
           name: API Tests
       - run:
-          name: Test Daedric API
+          name: Test DApp API
           command: |
               export ANSIBLE_HOST_KEY_CHECKING=False
               ansible-playbook -u ubuntu --private-key=~/.ssh/kirill-IAM-keypair.pem -i terraform/ip_address ansible/test_daedric_api.yml
