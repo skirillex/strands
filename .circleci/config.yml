@@ -28,8 +28,10 @@ jobs:
           command: sudo apt -y install ansible
       - run:
           command: |
+              mkdir test-results
               cd strands_app_tester
-              python -m unittest discover tests/
+            # python -m unittest discover tests/
+              pytest --junitxml=test-results/junit.xml tests/
           name: Unit Tests
       - run:
           name: Terraform Commands
@@ -37,6 +39,11 @@ jobs:
               cd terraform/
               terraform init
               terraform apply -auto-approve
+      - run:
+          command: |
+              cd integration_tests/
+              pytest --junitxml=test-results/junit-INTEGRATION_TESTS.xml
+          name: Integration Test for instance
       - run:
           name: Ansible test hosts file
           command: |
@@ -58,6 +65,12 @@ jobs:
           command: |
               export ANSIBLE_HOST_KEY_CHECKING=False
               ansible-playbook -u ubuntu --private-key=~/.ssh/kirill-IAM-keypair.pem -i terraform/ip_address ansible/deploy_daedric.yml
+      - run:
+          command: |
+              cd api_tests/
+              pytest --junitxml=test-results/junit-API_TESTS.xml
+          name: API Tests
+
       - store_test_results:
           path: test-results
   

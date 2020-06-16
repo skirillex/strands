@@ -9,3 +9,25 @@
 ip_address
 test_open_file.py
 integration_tests/__pycache__
+
+
+#Daedric price oracle
+Daedric/tbears.log
+
+Daedric/config/euljiro/keystores
+Daedric/config/euljiro/score_address.txt
+
+Daedric/config/mainnet/keystores
+Daedric/config/mainnet/score_address.txt
+
+Daedric/config/yeouido/keystores
+Daedric/config/yeouido/score_address.txt
+
+Daedric/config/localhost/score_address.txt
+Daedric/icon
+Daedric/cron-pricebot
+Daedric/deploy_tests
+
+api_tests/__pycache__
+
+
