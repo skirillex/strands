@@ -1,0 +1,25 @@
+---
+
+    - name: Deploy Daedric Price Oracle
+      connection: ssh
+      become: true
+      gather_facts: false
+      hosts: all
+      vars:
+        repo_folder: /var/daedric
+        live_folder: /var/www/test_page/build
+        repo_name: skirillex/Daedric
+    
+      tasks:    
+        - name: change python
+          shell: update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+    
+        - name: get Daedric Tests
+          shell: curl -OL https://github.com/skirillex/strands/master/Daedric/test_deployed_score.py
+          args:
+            chdir: "{{ repo_folder }}"
+        
+        - name: run Daedric Tests
+          shell: pytest --junitxml=junit.xml
+          args:
+            chdir: "{{ repo_folder }}"
