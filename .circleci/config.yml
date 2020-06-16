@@ -30,7 +30,6 @@ jobs:
           command: |
               mkdir test-results
               cd strands_app_tester
-            # python -m unittest discover tests/
               pytest --junitxml=test-results/junit.xml tests/
           name: Unit Tests
       - run:
