@@ -30,7 +30,7 @@ jobs:
           command: |
               mkdir test-results
               cd strands_app_tester
-              python -m pytest --junitxml=test-results/junit.xml tests/
+              python -m pytest --junitxml=../test-results/junit.xml tests/
           name: Unit Tests
       - run:
           name: Terraform Commands
@@ -42,7 +42,7 @@ jobs:
           command: |
               sleep 90
               cd integration_tests/
-              pytest --junitxml=test-results/junit-INTEGRATION_TESTS.xml
+              pytest --junitxml=../test-results/junit-INTEGRATION_TESTS.xml
           name: Integration Test for instance
       - run:
           name: Ansible test hosts file
@@ -60,15 +60,21 @@ jobs:
               ansible-playbook -u ubuntu --private-key=~/.ssh/kirill-IAM-keypair.pem -i terraform/ip_address ansible/deploy.yml
     
       - run:
-          name: Ansible deployment playbook
+          name: Ansible deploy Daedric playbook
           command: |
               export ANSIBLE_HOST_KEY_CHECKING=False
               ansible-playbook -u ubuntu --private-key=~/.ssh/kirill-IAM-keypair.pem -i terraform/ip_address ansible/deploy_daedric.yml
       - run:
           command: |
               cd api_tests/
-              pytest --junitxml=test-results/junit-API_TESTS.xml
+              pytest --junitxml=../test-results/junit-API_TESTS.xml
           name: API Tests
+      - run:
+          name: Test Daedric API
+          command: |
+              export ANSIBLE_HOST_KEY_CHECKING=False
+              ansible-playbook -u ubuntu --private-key=~/.ssh/kirill-IAM-keypair.pem -i terraform/ip_address ansible/test_daedric_api.yml
+
 
       - store_test_results:
           path: test-results
