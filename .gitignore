@@ -30,4 +30,8 @@ Daedric/deploy_tests
 
 api_tests/__pycache__
 
+docker/Dockerfile.original
+
+docker/test.sh
+docker/test2.sh
 
