@@ -30,7 +30,7 @@ jobs:
           command: |
               mkdir test-results
               cd strands_app_tester
-              pytest --junitxml=test-results/junit.xml tests/
+              python -m pytest --junitxml=test-results/junit.xml tests/
           name: Unit Tests
       - run:
           name: Terraform Commands
