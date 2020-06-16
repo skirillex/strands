@@ -73,9 +73,9 @@
       pip:
         name: requests
     
-    #- name: install (pkg-config)
-    #  pip:
-    #    name: pkgconfig
+    - name: install (pytest)
+      pip:
+        name: pytest
         
     - name: install (tbears)
       pip:
