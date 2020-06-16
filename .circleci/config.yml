@@ -40,13 +40,13 @@ jobs:
               terraform apply -auto-approve
       - run:
           command: |
+              sleep 90
               cd integration_tests/
               pytest --junitxml=test-results/junit-INTEGRATION_TESTS.xml
           name: Integration Test for instance
       - run:
           name: Ansible test hosts file
           command: |
-              sleep 90
               ansible-inventory --list -y -i terraform/ip_address
       - run:
           name: Ansible set up server
