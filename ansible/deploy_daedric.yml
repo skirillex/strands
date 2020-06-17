@@ -26,10 +26,10 @@
       args:
         chdir: "{{ repo_folder }}"
 
-    - name: free up port 9000
-      shell: pkill gunicorn
-      args:
-        chdir: "{{ repo_folder }}"
+    #- name: free up port 9000
+    #  shell: pkill gunicorn
+    #  args:
+    #    chdir: "{{ repo_folder }}"
 
     - name: Start tbears
       shell: ./start_tbears.sh
