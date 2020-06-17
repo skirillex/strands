@@ -21,6 +21,11 @@
     - name: change python
       shell: update-alternatives --install /usr/bin/python python /usr/bin/python3 10
 
+    - name: Stop tbears
+      shell: tbears stop
+      args:
+        chdir: "{{ repo_folder }}"
+
     - name: free up port 9000
       shell: pkill gunicorn
       args:
