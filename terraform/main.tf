@@ -3,17 +3,17 @@ provider "aws" {
   version = "~> 2.43.0"
 }
 
+# remote state in s3 bucket
 terraform {
   backend "s3" {
-    # Replace this with your bucket name!
     bucket         = "terraform-bucket-remote-state-strands"
     key            = "global/s3/terraform.tfstate"
-    region         = "us-east-2"
-    # Replace this with your DynamoDB table name!
+    region         = "us-east-1"
     dynamodb_table = "terraform-bucket-remote-state-strands-locks"
     encrypt        = true
   }
 }
+
 
 
 
