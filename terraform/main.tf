@@ -3,6 +3,18 @@ provider "aws" {
   version = "~> 2.43.0"
 }
 
+terraform {
+  backend "s3" {
+    # Replace this with your bucket name!
+    bucket         = "terraform-bucket-remote-state-strands"
+    key            = "global/s3/terraform.tfstate"
+    region         = "us-east-2"
+    # Replace this with your DynamoDB table name!
+    dynamodb_table = "terraform-bucket-remote-state-strands-locks"
+    encrypt        = true
+  }
+}
+
 
 
 module "sandbox_vpc" {
@@ -151,4 +163,6 @@ resource "aws_eip" "elastic_ips_for_instances" {
   }
 
 }
+
+
 
