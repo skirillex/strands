@@ -5,6 +5,8 @@ provider "aws" {
 
 // remote state in s3 bucket
 // test
+// add for ci deployment
+// add
 terraform {
   backend "s3" {
     bucket         = "terraform-bucket-remote-state-strands"
