@@ -3,7 +3,7 @@ provider "aws" {
   version = "~> 2.43.0"
 }
 
-# remote state in s3 bucket
+// remote state in s3 bucket
 terraform {
   backend "s3" {
     bucket         = "terraform-bucket-remote-state-strands"
@@ -97,16 +97,6 @@ data "http" "getexternalip" {
     Terraform   = "true"
   }
 }
-
-/* 
-
-Configuration for a EC2 Instance
-
-For all the arguments and options, visit:
-https://www.terraform.io/docs/providers/aws/r/instance.html
-
-  
- */
 
 
 resource "aws_instance" "ec2_web_app_instance" {

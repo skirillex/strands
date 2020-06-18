@@ -7,6 +7,8 @@ class MyTestCase(unittest.TestCase):
         mainPage.app.testing = True
         self.app = mainPage.app.test_client()
 
+    ####
+
     # looks to see if the home page is reachable
     def test_home(self):
         result = self.app.get('/')
