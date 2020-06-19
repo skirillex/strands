@@ -17,7 +17,7 @@ This implementation uses:
 
 ## Motivation
 
-According to the [state of DevOps 2019 report}(https://services.google.com/fh/files/misc/state-of-devops-2019.pdf):
+According to the [state of DevOps 2019 report](https://services.google.com/fh/files/misc/state-of-devops-2019.pdf):
 organizations that practice CI/CD produce higher quality software more quickly.
 
 unfortunately, certain industried, such as the Blockchain industry, are devoid of open-source CI/CD tools. 
