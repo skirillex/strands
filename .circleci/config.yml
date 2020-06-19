@@ -75,7 +75,11 @@ jobs:
               export ANSIBLE_HOST_KEY_CHECKING=False
               ansible-playbook -u ubuntu --private-key=~/.ssh/kirill-IAM-keypair.pem -i terraform/ip_address ansible/test_daedric_api.yml
 
-
+      - run:
+          name: ROLL BACK commit if pipeline fails
+          command: git revert HEAD --no-commit
+          when: on_fail # if any prev step fails. roll back the commit.
+            
       - store_test_results:
           path: test-results
   
