@@ -26,6 +26,6 @@ This project aims to address that issue by providing a reference implementation 
 
 ## Project Architecture
 
-<img src="https://raw.githubusercontent.com/skirillex/strands/master/strands_app_tester/Strands_Architecturev5.png" width="48%">
+<img src="https://raw.githubusercontent.com/skirillex/strands/master/strands_app_tester/Strands_Architecturev5.png" width="65%">
 
 
