@@ -32,7 +32,7 @@ This implementation uses:
 According to the [state of DevOps 2019 report](https://services.google.com/fh/files/misc/state-of-devops-2019.pdf):
 organizations that practice CI/CD produce higher quality software more quickly.
 
-unfortunately, certain industried, such as the Blockchain industry, are devoid of open-source CI/CD tools. 
+Unfortunately, certain industries, such as the Blockchain industry, are devoid of open-source CI/CD tools. 
 This project aims to address that issue by providing a reference implementation for the deployment of Decentralized Applications
 
 
@@ -85,3 +85,4 @@ The key part of this reference architecture is to use the Config files from Circ
 | 1    | Configure files, and ensure CircleCI is loaded with your AWS credentials |
 | 2    | in the CircleCI GUI point CircleCI to your respository | 
 | 3    | Ensure the patterns of this reference architecture is followed with relevant and robust tests |
+| 4    | once configured, push code to the repository CircleCi is listening on |
